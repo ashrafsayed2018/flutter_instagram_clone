@@ -71,4 +71,28 @@ class AuthMethods {
     }
     return res;
   }
+
+  Future<String> loginUser(String email, String password) async {
+    String res = '';
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+        res = "success";
+      } else {
+        res = "please enter all the feild";
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        res = "البريد الالكتروني غير صحيح";
+      } else if (e.code == "wrong-password") {
+        res = "الرقم السري غير صحيح";
+      } else if (e.code == 'email-already-in-use') {
+        res = "البريد الالكتروني مستخدم من قبل ";
+      }
+    } catch (error) {
+      res = error.toString();
+    }
+    return res;
+  }
 }
