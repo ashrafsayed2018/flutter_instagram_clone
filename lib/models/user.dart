@@ -34,6 +34,7 @@ class User {
   static User fromSnap(DocumentSnapshot snap) {
     Map data = (snap.data() as Map<String, dynamic>);
     return User(
+        uid: data['uid'],
         bio: data['bio'],
         username: data['username'],
         email: data['email'],
