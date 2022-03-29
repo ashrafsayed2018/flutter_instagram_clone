@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // text input feild box for email
               TextFeildInput(
                 textEditingController: _emailController,
-                hintText: "enter your email",
+                hintText: "البريد الالكتروني",
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // text input feild box for password
               TextFeildInput(
                 textEditingController: _passwordController,
-                hintText: "enter your password",
+                hintText: "الرقم السري",
                 textInputType: TextInputType.visiblePassword,
                 isPassword: true,
               ),
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: CircularProgressIndicator(),
                       )
                     : Container(
-                        child: const Text("login"),
+                        child: const Text("دخول"),
                         width: double.infinity,
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -129,14 +129,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: const Text("Don't have an account "),
+                    child: const Text("ليس لديك حساب"),
                     padding: const EdgeInsets.symmetric(vertical: 8),
+                  ),
+                  const SizedBox(
+                    width: 10,
                   ),
                   GestureDetector(
                     onTap: navigateToSignUp,
                     child: Container(
                       child: const Text(
-                        "Sign up",
+                        "تسجيل",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),

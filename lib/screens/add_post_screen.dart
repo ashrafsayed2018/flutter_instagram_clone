@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:instagram_flutter/models/user.dart' as model;
 import 'package:instagram_flutter/providers/user_provider.dart';
 import 'package:instagram_flutter/resources/firestore_methods.dart';
+import 'package:instagram_flutter/screens/feed_screen.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -25,11 +26,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: const Text("create a post"),
+            title: const Text("اضف بوست"),
             children: [
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: const Text("take a phot"),
+                child: const Text("التقط صوره"),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(ImageSource.camera);
@@ -40,7 +41,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: const Text("choose from gallary"),
+                child: const Text("معرض الصور"),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(ImageSource.gallery);
@@ -51,7 +52,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
-                child: const Text("cancel"),
+                child: const Text("اغلاق"),
                 onPressed: () async {
                   Navigator.of(context).pop();
                 },
@@ -73,11 +74,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
       String res = await FirestoreMethods().uploadPost(
           _descriptionController.text, _file!, uid, username, profileImage);
       if (res == "success") {
-        showSnackBar('posted', context, 0XFF009900);
+        showSnackBar('تمت اضافة المقال', context, 0XFF009900);
         setState(() {
           _isLoading = false;
         });
         clearImage();
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const FeedScreen()));
       } else {
         showSnackBar(res, context, 0xffff0000);
         setState(() {
@@ -120,7 +123,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
-              title: const Text('post to '),
+              title: const Text(''),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -128,7 +131,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     _postImage(user.uid!, user.username!, user.photoUrl!);
                   },
                   child: const Text(
-                    "post",
+                    "حفظ",
                     style: TextStyle(
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold,
@@ -158,7 +161,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       child: TextField(
                         controller: _descriptionController,
                         decoration: const InputDecoration(
-                          hintText: "write a caption",
+                          hintText: "اكتب نص ",
                           border: InputBorder.none,
                         ),
                         maxLines: 8,

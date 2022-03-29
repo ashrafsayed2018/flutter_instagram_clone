@@ -24,12 +24,67 @@ class FirestoreMethods {
         datePublished: DateTime.now(),
         postUrl: photoUrl,
         profileImage: profImage,
-        likes: 0,
+        likes: [],
       );
       _firestore.collection('posts').doc(postId).set(post.toJson());
       res = "success";
     } catch (err) {
       return err.toString();
+    }
+    return res;
+  }
+
+  Future<void> likePost({uid, String? postId, List? likes}) async {
+    try {
+      if (likes!.contains(uid)) {
+        await _firestore.collection('posts').doc(postId).update(
+          {
+            'likes': FieldValue.arrayRemove([uid]),
+          },
+        );
+      } else {
+        await _firestore.collection('posts').doc(postId).update(
+          {
+            'likes': FieldValue.arrayUnion([uid]),
+          },
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  // create comment on post
+  Future<String> postComment(
+      {String? postId,
+      String? text,
+      String? uid,
+      String? name,
+      String? profilePic}) async {
+    String res = "some error accured";
+    try {
+      if (text != null && text.isNotEmpty) {
+        String commentId = const Uuid().v1();
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .set({
+          'text': text,
+          'uid': uid,
+          'name': name,
+          'profilePic': profilePic,
+          'commentId': commentId,
+          'dateCommented': DateTime.now(),
+        });
+
+        res = "success";
+      } else {
+        print('not text added');
+      }
+    } catch (err) {
+      print(err.toString());
     }
     return res;
   }

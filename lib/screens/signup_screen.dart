@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_flutter/resources/auth_method.dart';
@@ -8,7 +7,6 @@ import 'package:instagram_flutter/responsive/responsive_layout_screen.dart';
 import 'package:instagram_flutter/responsive/web_screen_layout.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 import 'package:instagram_flutter/utils/colors.dart';
-import 'package:instagram_flutter/utils/global_variables.dart';
 import 'package:instagram_flutter/utils/utils.dart';
 import 'package:instagram_flutter/widgets/text_feild_input.dart';
 
@@ -126,7 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // text input feild box for username
                 TextFeildInput(
                   textEditingController: _usernameController,
-                  hintText: "enter your username",
+                  hintText: "اسمك",
                   textInputType: TextInputType.text,
                 ),
 
@@ -136,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // text input feild box for email
                 TextFeildInput(
                   textEditingController: _emailController,
-                  hintText: "enter your email",
+                  hintText: "البريد الالكتروني",
                   textInputType: TextInputType.emailAddress,
                 ),
                 const SizedBox(
@@ -145,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // text input feild box for password
                 TextFeildInput(
                   textEditingController: _passwordController,
-                  hintText: "enter your password",
+                  hintText: "الرقم السري",
                   textInputType: TextInputType.visiblePassword,
                   isPassword: true,
                 ),
@@ -154,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 TextFeildInput(
                   textEditingController: _bioController,
-                  hintText: "enter your bio",
+                  hintText: "نبذه عن عملك",
                   textInputType: TextInputType.text,
                 ),
                 const SizedBox(
@@ -169,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               color: primaryColor,
                             ),
                           )
-                        : const Text("Signup"),
+                        : const Text("تسجيل"),
                     width: double.infinity,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(vertical: 12),
@@ -192,14 +190,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: const Text("Already have an account "),
+                      child: const Text("لديك حساب بالفعل"),
                       padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
+                    const SizedBox(width: 10),
                     GestureDetector(
                       onTap: navigateToLogin,
                       child: Container(
                         child: const Text(
-                          "Login",
+                          "دخول",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),

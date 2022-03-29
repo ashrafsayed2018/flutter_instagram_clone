@@ -52,7 +52,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: _page == 0 ? Colors.white : Colors.black,
+              color: _page == 0 ? Colors.blue[400] : Colors.grey[400],
             ),
             label: '',
             backgroundColor: primaryColor,
@@ -60,7 +60,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
-              color: _page == 1 ? Colors.white : Colors.black,
+              color: _page == 1 ? Colors.blue[400] : Colors.grey[400],
             ),
             label: '',
             backgroundColor: primaryColor,
@@ -68,7 +68,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
-              color: _page == 2 ? Colors.white : Colors.black,
+              color: _page == 2 ? Colors.blue[400] : Colors.grey[400],
             ),
             label: '',
             backgroundColor: primaryColor,
@@ -76,7 +76,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.logout_outlined,
-              color: _page == 3 ? Colors.white : Colors.black,
+              color: _page == 3 ? Colors.blue[400] : Colors.grey[400],
             ),
             label: '',
             backgroundColor: primaryColor,
@@ -84,7 +84,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: _page == 4 ? Colors.white : Colors.black,
+              color: _page == 4 ? Colors.blue[400] : Colors.grey[400],
             ),
             label: '',
             backgroundColor: primaryColor,
